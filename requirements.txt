@@ -1,7 +1,7 @@
-Flask==2.3.3
-Werkzeug==2.3.3
-tensorflow==2.12.0
-opencv-python==4.7.0.72
-scikit-learn==1.2.2
-gunicorn==20.1.0
+Flask
+Werkzeug
+tensorflow
+opencv-python
+scikit-learn
+gunicorn
 #pip freeze > requirements.txt
