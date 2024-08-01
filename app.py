@@ -1,9 +1,28 @@
 from flask import Flask, request, render_template, redirect, url_for
 from werkzeug.utils import secure_filename
 import os
+from PIL import Image
+import numpy as np
+import tensorflow as tf
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads/'
+
+# Load a pre-trained model (e.g., MobileNetV2)
+model = tf.keras.applications.MobileNetV2(weights='imagenet')
+
+def preprocess_image(image_path):
+    image = Image.open(image_path).resize((224, 224))
+    image = np.array(image)
+    image = tf.keras.applications.mobilenet_v2.preprocess_input(image)
+    image = np.expand_dims(image, axis=0)
+    return image
+
+def get_image_score(image_path):
+    image = preprocess_image(image_path)
+    predictions = model.predict(image)
+    score = np.max(predictions)  # Just an example, use proper scoring if available
+    return score
 
 @app.route('/')
 def index():
@@ -28,9 +47,9 @@ def compare():
     file1.save(filepath1)
     file2.save(filepath2)
     
-    # Simulated scores for testing
-    score1 = 7.5
-    score2 = 8.2
+    # Generate scores
+    score1 = get_image_score(filepath1)
+    score2 = get_image_score(filepath2)
     
     if score1 > score2:
         winner_filename = filename1
