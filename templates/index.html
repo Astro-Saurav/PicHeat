@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Comparison</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Photo Comparison: Who is Hotter?</h1>
+    <form id="upload-form" action="/compare" method="post" enctype="multipart/form-data">
+        <label for="image1">Upload First Image:</label>
+        <input type="file" id="image1" name="image1" required>
+        <br>
+        <label for="image2">Upload Second Image:</label>
+        <input type="file" id="image2" name="image2" required>
+        <br>
+        <button type="submit">Compare</button>
+    </form>
+    <div id="result">
+        {% if result %}
+            <h2>Comparison Result</h2>
+            <div>
+                <h3>Uploaded Images</h3>
+                <img src="{{ url_for('static', filename='uploads/' + image1_filename) }}" alt="Photo 1" style="width:300px;">
+                <img src="{{ url_for('static', filename='uploads/' + image2_filename) }}" alt="Photo 2" style="width:300px;">
+            </div>
+            <div>
+                <h3>Winner</h3>
+                <img src="{{ url_for('static', filename='uploads/' + winner_filename) }}" alt="Winner Photo" style="width:300px;">
+                <p>{{ result }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
