@@ -39,9 +39,9 @@ picheat/
   ```
  python -m venv venv
 source venv/bin/activate
+# On Windows use 
+venv\Scripts\activate
 ```
-### On Windows use 
-`venv\Scripts\activate`
 
 3. Install the required packages: `pip install -r requirements.txt`
 4. Ensure you have TensorFlow and Pillow installed:`pip install tensorflow pillow`
