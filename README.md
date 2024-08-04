@@ -31,7 +31,7 @@ picheat/
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your_username/picheat.git
+   git clone https://github.com/Astro-Saurav/PicHeat
    cd picheat
    ```
 
